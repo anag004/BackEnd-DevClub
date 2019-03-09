@@ -12,8 +12,8 @@ def home(request):
 class PostListView(ListView):
     model = Post
     template_name = 'blog/home.html'
-    context_object_name = 'posts'    
-    ordering = ['-date_posted']    
+    context_object_name = 'posts'
+    ordering = ['-date_posted']
     paginate_by = 5
 
 class UserPostListView(ListView):
@@ -31,7 +31,7 @@ class PostDetailView(DetailView):
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
-    success_url = '/'    
+    success_url = '/'
 
     def test_func(self):
         post = self.get_object()
@@ -42,8 +42,8 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content']
-    
+    fields = ['title', 'content', 'img', 'price']
+
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
@@ -51,7 +51,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'content', 'img', 'price']
 
     def form_valid(self, form):
         form.instance.author = self.request.user

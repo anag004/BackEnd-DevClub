@@ -8,9 +8,11 @@ class Post(models.Model):
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-   
+    img = models.ImageField(default='default.jpg', upload_to='product_pics')
+    price = models.DecimalField(max_digits=7, decimal_places=2, default=10.00)
+
     def __str__(self):
-        return self.title 
+        return self.title
 
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})

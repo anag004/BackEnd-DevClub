@@ -1,7 +1,7 @@
-{% extends "blog/base.html" %}        
+{% extends "blog/base.html" %}
 {% block content %}
 <article class="media content-section">
-<img src="{{ object.author.profile.img.url }}" class="rounded-circle article-img">
+<img src="{{ object.img.url }}" class="rounded article-img">
   <div class="media-body">
     <div class="article-metadata">
       <a class="mr-2" href="{% url 'users-posts' object.author.username %}">{{ object.author }}</a>
@@ -14,6 +14,7 @@
     {% endif %}
     </div>
     <h2 class="article-title">{{ object.title }}</h2>
+    <h5 class="article-title">Price: Rs. {{ object.price }}</h5>
     <p class="article-content">{{ object.content }}</p>
   </div>
 </article>
